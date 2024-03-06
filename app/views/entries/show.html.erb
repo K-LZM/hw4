@@ -1,0 +1,21 @@
+<div class="row">
+  <% for entry in @entries %>
+    <div class="col-sm-6 col-md-3">
+      <h4>
+        <%# Display the name of the user that created the entry: %>
+        <%# 1. find user who created entry %>
+        <% user = User.find_by({ "id" => entry["user_id"] }) %>
+        <%# 2. handle any potential bad data where the entry is missing a user %>
+        <% if user != nil %>
+          <%= user["first_name"] %>
+        <% else %>
+          anonymous
+        <% end %>
+      </h4>
+      <img src="<%= entry["image"] %>" class="img-fluid">
+      <p><%= entry["body"] %></p>
+    </div>
+  <% end %>
+</div>
+
+ 

@@ -2,16 +2,17 @@
 
 <form action="/users" method="post">
   <p>
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
+    <label class="form-label" for="username_input">Username</label>
+    <input type="text" name="username" id="username_input" class="form-control">
   </p>
+
   <p>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email">
+    <label for="email_input" class="form-label">Email</label>
+    <input type="text" name="email" id="email_input" class="form-control">
+
+    <label for="password_input" class="form-label">Password</label>
+    <input type="password" name="password" id="password_input" class="form-control">
   </p>
-  <p>
-    <label for="password">Password</label>
-    <input type="text" name="password" id="password">
-  </p>
-  <button>Signup</button>
+
+  <button class="btn btn-primary">Signup</button>
 </form>
