@@ -1,10 +1,14 @@
 class EntriesController < ApplicationController
 
-  def show
+  def index
     if User.find_by({"id" => session["user_id"]}) != nil
       @entries = Entry.all
       @entry = Entry.find_by({ "id" => params["id"] })
       @place = Place.find_by({ "id" => @entry["place_id"] })
+
+      # respond_to do |format|
+      #   format.html #{ render :template => "posts/index" }
+      #   format.json { render :json => @posts }
     else
       flash["notice"] = "Login first please."
       redirect_to "/login"
@@ -12,7 +16,7 @@ class EntriesController < ApplicationController
   end
 
   def new
-    @place = Place.find_by({ "id" => params["place_id"] })
+    @user = User.find_by({ "id" => session["user_id"] })
   end
 
   def create
@@ -36,16 +40,6 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find_by({ "id" => params["id"] })
     @place = Place.find_by({ "id" => @entry["place_id"] })
-  end
-  
-  def update
-    @entry = Entry.find_by({ "id" => params["id"] })
-    @entry["first_name"] = params["first_name"]
-    @entry["last_name"] = params["last_name"]
-    @entry["email"] = params["email"]
-    @entry["phone_number"] = params["phone_number"]
-    @entry.save
-    redirect_to "/entries/#{@entry["id"]}"
   end
 
   def destroy
