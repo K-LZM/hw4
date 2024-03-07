@@ -6,9 +6,9 @@ class EntriesController < ApplicationController
       @entry = Entry.find_by({ "id" => params["id"] })
       @place = Place.find_by({ "id" => @entry["place_id"] })
 
-      # respond_to do |format|
-      #   format.html #{ render :template => "posts/index" }
-      #   format.json { render :json => @posts }
+      respond_to do |format|
+        format.html #{ render :template => "posts/index" }
+        format.json { render :json => @entries }
     else
       flash["notice"] = "Login first please."
       redirect_to "/login"
