@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
 
   def index
     if User.find_by({"id" => session["user_id"]}) != nil
-      @entries = Entry.all
+      # @entries = Entry.all
       @entry = Entry.find_by({ "id" => params["id"] })
       @place = Place.find_by({ "id" => @entry["place_id"] })
 
@@ -16,6 +16,7 @@ class EntriesController < ApplicationController
   end
 
   def new
+    @place = Place.find_by({ "id" => params["place_id"] })
     @user = User.find_by({ "id" => session["user_id"] })
   end
 

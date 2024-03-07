@@ -7,6 +7,11 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find_by({ "id" => params["id"] })
     @entries = Entry.where({ "place_id" => @place["id"] })
+    
+    respond_to do |format|
+      format.html #{ render :template => "posts/index" }
+      format.json { render :json => @posts }
+    end
   end
 
   def new
