@@ -1,4 +1,11 @@
 <h1><%= @place["name"] %></h1>
+
+<% if session[:user_id] %>
+  <p>
+    <a href="/entries/new?place_id=<%= @place["id"] %>" class="link-success""></a>
+  </p>
+
+
 <h2>My Entries</h2>
 <div class="row">
   <% for entry in @entries %>
@@ -29,6 +36,7 @@
     </div>
   <% end %>
 </div>
+<% end %>
 
 <p>
   <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
