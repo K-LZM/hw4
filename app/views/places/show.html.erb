@@ -3,7 +3,7 @@
 <div class="row">
   <% for entry in @entries %>
     <div class="col-sm-6 col-md-3">
-      <h4>
+      <h6>
         <%# find user who created post %>
         <% user = User.find_by({ "id" => entry["user_id"] }) %>
         <%# handle any potential bad data where the post is missing a user %>
@@ -12,8 +12,9 @@
         <% else %>
           anonymous
         <% end %>
-      </h4>
-      
+      </h6>
+
+      <h4><%= entry["title"] %></h4>
       <%# conditionally display attached file if entry.uploaded_image.attached? %>
       <% if entry.uploaded_image.attached? %>
         <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
@@ -21,9 +22,10 @@
       <% else %>
         <img src="<%= entry["image"] %>" class="img-fluid">
       <% end %>
-      <h3><%= entry["title"] %></h3>
-      <h4><%= entry["occurred_on"] %></h4>
+     
+      <h6><%= entry["occurred_on"] %></h6>
       <p><%= entry["description"] %></p> 
+
     </div>
   <% end %>
 </div>
